@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery.cookie.js"></script>
+  <script src="js/main.js"></script>
+</head>
+
+<body>
+  <div id="img" style="display: none;">
+    <a href="https://www.linkedin.com/oauth/v2/authorization
+?client_id=86ex3hh85g80oi
+&redirect_uri=http://localhost:8000/projects/linkedInLogin/
+&scope=r_liteprofile
+&response_type=code
+&nonce=n77z7nmu14k">
+      <img class="linkedin-button" src="img/Sign-In-Small---Active.png" alt="linkedin button" onMouseOver="this.style.cursor='pointer'">
+    </a>
+  </div>
+  <div id="welcome" style="display: none;">
+    <p>Hello <span id="user-name"></span>! Welcome Back :)</p>
+  </div>
+  <div id="error" style="display: none;">
+    <span id="error-text">Error Log In! Please try again</span>
+  </div>
+</body>
+
+</html>

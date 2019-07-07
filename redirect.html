@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      var c = getUrlParameter('code');
+      if (c!= "") {
+        console.log(c);
+      } else {
+        console.log("nothing!");
+      }
+    });
+
+    function getUrlParameter(name) {
+      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+      var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+      var results = regex.exec(location.search);
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+  </script>
+</head>
+
+<body>
+  <a href="https://www.linkedin.com/oauth/v2/authorization
+?client_id=86ex3hh85g80oi
+&redirect_uri=http://localhost:8000/projects/linkedInLogin/
+&scope=r_liteprofile
+&response_type=code
+&nonce=n77z7nmu14k">
+    <img class="linkedin-button" src="Sign-In-Small---Active.png" alt="linkedin button" onMouseOver="this.style.cursor='pointer'">
+  </a>
+</body>
+
+</html>
