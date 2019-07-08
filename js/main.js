@@ -6,7 +6,7 @@ $(document).ready(function() {
     }
 
     $.ajax({
-      url: 'http://localhost:8080/v1/linkedin/login',
+      url: 'http://localhost:8080/v1/user/linkedin/login',
       type: 'post',
       dataType: 'json',
       contentType: 'application/json',
@@ -31,10 +31,10 @@ $(document).ready(function() {
     var userID = $.cookie('frolleagueUser');
     if (userID != "") {
       var request = {
-        linkedInUserId: userID
+        userId: userID
       }
       $.ajax({
-        url: 'http://localhost:8080/v1/linkedin/me',
+        url: 'http://localhost:8080/v1/user/linkedin/me',
         type: 'post',
         dataType: 'json',
         contentType: 'application/json',
@@ -49,9 +49,10 @@ $(document).ready(function() {
         },
         error: function(error) {
           console.log(error);
-          if (error.status == 401) {
-            // do something
+          if (error.status == 400) {
+            $("#error").show();
           }
+          $("#img").show();
         },
         data: JSON.stringify(request)
       });
