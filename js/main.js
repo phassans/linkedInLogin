@@ -1,21 +1,24 @@
+var APIURL = "http://localhost:8080/v1/";
+var redirectURL = "http://localhost:8000/";
+
 $(document).ready(function() {
-  var c = getUrlParameter('code');
+  var c = getUrlParameter("code");
   if (c != "") {
     var request = {
       authCode: c
-    }
+    };
 
     $.ajax({
-      url: 'http://localhost:8080/v1/user/linkedin/login',
-      type: 'post',
-      dataType: 'json',
-      contentType: 'application/json',
+      url: APIURL + "user/linkedin/login",
+      type: "post",
+      dataType: "json",
+      contentType: "application/json",
       success: function(data) {
         console.log(data.linkedInId);
-        $.cookie('frolleagueUser', data.linkedInId, {
+        $.cookie("frolleagueUser", data.linkedInId, {
           expires: 7
         });
-        $(location).attr('href', 'http://localhost:8000/projects/linkedInLogin/')
+        $(location).attr("href", redirectURL);
       },
       error: function(data) {
         if (data.status == 401) {
@@ -25,19 +28,18 @@ $(document).ready(function() {
       },
       data: JSON.stringify(request)
     });
-
   } else {
     // read from cookie
-    var userID = $.cookie('frolleagueUser');
+    var userID = $.cookie("frolleagueUser");
     if (userID != "") {
       var request = {
         userId: userID
-      }
+      };
       $.ajax({
-        url: 'http://localhost:8080/v1/user/linkedin/me',
-        type: 'post',
-        dataType: 'json',
-        contentType: 'application/json',
+        url: APIURL + "user/linkedin/me",
+        type: "post",
+        dataType: "json",
+        contentType: "application/json",
         success: function(data) {
           console.log(data);
           if (data.isUserLogin) {
@@ -63,8 +65,10 @@ $(document).ready(function() {
 });
 
 function getUrlParameter(name) {
-  name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-  var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
   var results = regex.exec(location.search);
-  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-};
+  return results === null
+    ? ""
+    : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
